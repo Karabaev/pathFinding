@@ -1,0 +1,14 @@
+{
+    "name": "com.karabaev.pathFinding",
+    "rootNamespace": "com.karabaev.pathFinding",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
