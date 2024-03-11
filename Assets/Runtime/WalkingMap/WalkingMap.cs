@@ -5,13 +5,13 @@ namespace com.karabaev.pathFinding.WalkingMap
 {
   public class WalkingMap
   {
-    private static readonly Vector3[] NeighboursTemplate = { new(1, 0), new(0, 1), new(-1, 0), new(0, -1) };
+    private static readonly Vector2Int[] NeighboursTemplate = { new(1, 0), new(0, 1), new(-1, 0), new(0, -1) };
     
-    private readonly Dictionary<Vector3, WalkingMapNode> _nodes;
+    private readonly Dictionary<Vector2Int, WalkingMapNode> _nodes;
 
-    public IReadOnlyDictionary<Vector3, WalkingMapNode> Nodes => _nodes;
+    public IReadOnlyDictionary<Vector2Int, WalkingMapNode> Nodes => _nodes;
 
-    public WalkingMapNode this[Vector3 coords] => _nodes[coords];
+    public WalkingMapNode this[Vector2Int coords] => _nodes[coords];
 
     private WalkingMapNode[] GetNeighbors(WalkingMapNode node)
     {
@@ -32,7 +32,7 @@ namespace com.karabaev.pathFinding.WalkingMap
     
     public WalkingMap(IReadOnlyList<MapNode> map)
     {
-      _nodes = new Dictionary<Vector3, WalkingMapNode>(map.Count);
+      _nodes = new Dictionary<Vector2Int, WalkingMapNode>(map.Count);
 
       foreach(var node in map)
         _nodes.Add(node.Position, new WalkingMapNode(node.Position, node.Type == MapNodeType.Free, 1.0f));

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using com.karabaev.pathFinding.Heuristic;
 using UnityEngine;
 
@@ -6,6 +6,6 @@ namespace com.karabaev.pathFinding
 {
   public interface IPathFindingService
   {
-    Stack<Vector3> FindPath(Vector3 origin, Vector3 destination, WalkingMap.WalkingMap walkingMap, IPathFindingHeuristicStrategy heuristicStrategy);
+    Stack<Vector2Int> FindPath(Vector2Int origin, Vector2Int destination, WalkingMap.WalkingMap walkingMap, IPathFindingHeuristicStrategy heuristicStrategy);
   }
 }

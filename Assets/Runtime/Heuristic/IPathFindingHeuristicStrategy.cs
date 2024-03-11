@@ -4,6 +4,6 @@ namespace com.karabaev.pathFinding.Heuristic
 {
   public interface IPathFindingHeuristicStrategy
   {
-    float Calculate(Vector3 start, Vector3 end);
+    float Calculate(Vector2Int start, Vector2Int end);
   }
 }
