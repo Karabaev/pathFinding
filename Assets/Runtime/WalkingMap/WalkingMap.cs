@@ -9,6 +9,8 @@ namespace com.karabaev.pathFinding.WalkingMap
     
     private readonly Dictionary<Vector3, WalkingMapNode> _nodes;
 
+    public IReadOnlyDictionary<Vector3, WalkingMapNode> Nodes => _nodes;
+
     public WalkingMapNode this[Vector3 coords] => _nodes[coords];
 
     private WalkingMapNode[] GetNeighbors(WalkingMapNode node)
