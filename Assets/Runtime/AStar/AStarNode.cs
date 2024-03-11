@@ -5,7 +5,7 @@ namespace com.karabaev.pathFinding.AStar
 {
   public readonly struct AStarNode : IComparable<AStarNode>
   {
-    public Vector3 Position { get; }
+    public Vector2Int Position { get; }
 
     /// <summary>
     /// Расстояние от начала пути до ноды. G
@@ -42,7 +42,7 @@ namespace com.karabaev.pathFinding.AStar
       return Position.ToString();
     }
 
-    public AStarNode(Vector3 position, float traversedDistance, float estimatedTotalCost)
+    public AStarNode(Vector2Int position, float traversedDistance, float estimatedTotalCost)
     {
       Position = position;
       TraversedDistance = traversedDistance;

@@ -10,14 +10,14 @@ namespace com.karabaev.pathFinding.AStar
     private const float StraightCost = 1.0f;
     private const float DiagonalCost = 1.41421356237f;
 
-    public Stack<Vector3> FindPath(Vector3 origin, Vector3 destination, WalkingMap.WalkingMap walkingMap,
+    public Stack<Vector2Int> FindPath(Vector2Int origin, Vector2Int destination, WalkingMap.WalkingMap walkingMap,
       IPathFindingHeuristicStrategy heuristicStrategy)
     {
       var startNode = new AStarNode(origin, 0, heuristicStrategy.Calculate(origin, destination));
 
-      var open = new BinaryHeap<Vector3, AStarNode>(n => n.Position);
-      var closed = new HashSet<Vector3>();
-      var links = new Dictionary<Vector3, Vector3>();
+      var open = new BinaryHeap<Vector2Int, AStarNode>(n => n.Position);
+      var closed = new HashSet<Vector2Int>();
+      var links = new Dictionary<Vector2Int, Vector2Int>();
 
       open.Enqueue(startNode);
 
@@ -59,25 +59,15 @@ namespace com.karabaev.pathFinding.AStar
       return BuildPath(origin, destination, links);
     }
 
-    private float CalculateCost(Vector3 source, Vector3 next, WalkingMap.WalkingMap walkingMap)
+    private float CalculateCost(Vector2Int source, Vector2Int next, WalkingMap.WalkingMap walkingMap)
     {
-      var matches = 0;
-      for(var i = 0; i < 3; i++)
-      {
-        var sourceValue = source[i];
-        var nextValue = next[i];
-        
-        if(sourceValue == nextValue)
-          matches++;
-      }
-
-      var cost = matches >= 2 ? StraightCost : DiagonalCost;
+      var cost = source.x == next.x || source.y == next.y ? StraightCost : DiagonalCost;
       return cost * walkingMap[next].CostMultiplier;
     }
 
-    private Stack<Vector3> BuildPath(Vector3 origin, Vector3 destination, Dictionary<Vector3, Vector3> links)
+    private Stack<Vector2Int> BuildPath(Vector2Int origin, Vector2Int destination, Dictionary<Vector2Int, Vector2Int> links)
     {
-      var path = new Stack<Vector3>();
+      var path = new Stack<Vector2Int>();
 
       if(!links.ContainsKey(destination))
         return path;
